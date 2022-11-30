@@ -11,8 +11,8 @@
       "remoteName": "developer.hikunpeng.com",
       "loginPath": "/hyper-tuner/user-management/#/login"
     },
-    { "username": "", "password": "" }
+    { "username": "tunadmin", "password": "" }
   ],
-  "tuningVersion": ["2.5.RC1.1"],
-  "configVersion": ["2.5.RC1.1"]
+  "tuningVersion": ["2.5.0"],
+  "configVersion": ["2.5.0"]
 }

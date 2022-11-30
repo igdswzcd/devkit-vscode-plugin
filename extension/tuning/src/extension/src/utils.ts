@@ -50,7 +50,7 @@ export class Utils {
    * @param context 插件上下文
    */
   public static getConfigJson(context: vscode.ExtensionContext): any {
-    saveData('tunadmin', 'admin100', '10.208.211.194');
+    // saveData('tunadmin', 'admin100', '10.208.211.194');
     const resourcePath = Utils.getExtensionFileAbsolutePath(
       context,
       'out/assets/config.json'
@@ -411,9 +411,9 @@ export class Utils {
               return;
             });
         });
-        panel.webview.html = this.getHtml(htmlDatas);
       }
     }
+    panel.webview.html = this.getHtml(htmlDatas);
   }
 
   /**
