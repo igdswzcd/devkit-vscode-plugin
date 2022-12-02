@@ -2,7 +2,7 @@
   "name": "kunpeng-hyper-tuner-plugin",
   "displayName": "Kunpeng Hyper Tuner Plugin",
   "description": "Kunpeng Hyper Tuner Plugin",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "publisher": "kunpengfamily",
   "engines": {
     "vscode": "^1.53.0"
@@ -137,7 +137,8 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "tslint -p ./",
     "test": "node ./out/test/runTest.js",
-    "package": "sh ./build/package.sh"
+    "package": "sh ./build/package.sh",
+    "simpack": "sh ./build/onlyExtPackage.sh"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",

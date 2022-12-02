@@ -9,10 +9,25 @@ import { iframeHtmlStr } from './template';
 import { ProxyManager } from './proxy-manager';
 import Download from './download';
 import { getPwd, saveData } from '.';
+import { resolve } from 'path';
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
 const i18n = I18nService.I18n();
+
+interface HtmlDatas {
+  ideAddress: string;
+  serverAddr: string;
+  serverPort: string;
+  defaultPort: number;
+  ideType: string;
+  pageLoadingText: string;
+  token?: string;
+  username?: string;
+  role?: string;
+  id?: number;
+  theme: string;
+}
 
 export class Utils {
   private static axiosInstance = axios.create({
@@ -44,13 +59,13 @@ export class Utils {
     if (os.type() === 'Windows_NT') {
       context.globalState.update('autoSystemFlag', true);
     }
+    // saveData('tunadmin', 'admin100', '10.208.211.194');
   }
   /**
    * 获取配置信息
    * @param context 插件上下文
    */
   public static getConfigJson(context: vscode.ExtensionContext): any {
-    // saveData('tunadmin', 'admin100', '10.208.211.194');
     const resourcePath = Utils.getExtensionFileAbsolutePath(
       context,
       'out/assets/config.json'
@@ -360,17 +375,26 @@ export class Utils {
     panel.onDidDispose(() => {
       ToolPanelManager.closeLoginPanel();
     }, null);
-    interface HtmlDatas {
-      ideAddress: string;
-      serverAddr: string;
-      serverPort: string;
-      defaultPort: number;
-      ideType: string;
-      pageLoadingText: string;
-      token?: string;
-      username?: string;
-      role?: string;
-      id?: number;
+    // 装载页面
+    new Promise<HtmlDatas>(() => {
+      this.generateIframeMsgData(global, defaultPort, (datas) => {
+        console.log(datas);
+        panel.webview.html = this.getHtml(datas);
+      });
+    });
+  }
+
+  static async generateIframeMsgData(
+    global: any,
+    defaultPort: number,
+    callback: (data: HtmlDatas) => void
+  ) {
+    let colorTheme = constant.COLOR_THEME.Dark;
+    const colorThemeStr: any = vscode.workspace
+      .getConfiguration()
+      .get('workbench.colorTheme');
+    if (colorThemeStr.indexOf('Light') !== -1) {
+      colorTheme = constant.COLOR_THEME.Light;
     }
     let htmlDatas: HtmlDatas = {
       ideAddress: `http://127.0.0.1:${defaultPort}`,
@@ -379,43 +403,44 @@ export class Utils {
       defaultPort,
       ideType: 'isVscode',
       pageLoadingText: i18n.page_loading,
+      theme: colorTheme,
     };
     if (vscode.env.appName === 'code-server' && vscode.env.uiKind === 2) {
       htmlDatas.ideAddress = `https://${htmlDatas.serverAddr}:${htmlDatas.serverPort}`;
       const codeServerCfg = this.getConfigJson(global.context).codeServerConfig;
       if (vscode.env.remoteName === codeServerCfg[0].remoteName) {
-        const getPwdPms = new Promise<any>((resolve) => {
+        new Promise<string>(() => {
           getPwd('tunadmin', '10.208.211.194', (pwd) => {
-            resolve(pwd);
+            console.log('pwd', pwd);
+            const requestParams: any = codeServerCfg[1];
+            const userSessionUrl = `http://127.0.0.1:${defaultPort}/user-management/api/v2.2/users/session/`;
+            htmlDatas.ideAddress = `https://${codeServerCfg[0].remoteName}${codeServerCfg[0].loginPath}`;
+            htmlDatas.ideType = 'isCodeServer';
+            this.codeServerAutoLogin(requestParams, userSessionUrl, pwd)
+              .then((response) => {
+                htmlDatas = {
+                  ...htmlDatas,
+                  token: response.headers.token,
+                  username: response.data.data.username,
+                  id: response.data.data.id,
+                  role: response.data.data.role,
+                };
+                console.log('token', htmlDatas.token);
+                callback(htmlDatas);
+              })
+              .catch((err) => {
+                console.log(err);
+                callback(htmlDatas);
+              });
           });
         });
-        getPwdPms.then((pwd) => {
-          console.log('pwd', pwd);
-          const requestParams: any = codeServerCfg[1];
-          const userSessionUrl = `  /user-management/api/v2.2/users/session/`;
-          htmlDatas.ideAddress = `https://${codeServerCfg[0].remoteName}${codeServerCfg[0].loginPath}`;
-          htmlDatas.ideType = 'isCodeServer';
-          this.codeServerAutoLogin(requestParams, userSessionUrl, pwd)
-            .then((response) => {
-              htmlDatas = {
-                ...htmlDatas,
-                token: response.headers.token,
-                username: response.data.data.username,
-                id: response.data.data.id,
-                role: response.data.data.role,
-              };
-              console.log('token', htmlDatas.token);
-            })
-            .then(() => {
-              panel.webview.html = this.getHtml(htmlDatas);
-              return;
-            });
-        });
+      } else {
+        callback(htmlDatas);
       }
+    } else {
+      callback(htmlDatas);
     }
-    panel.webview.html = this.getHtml(htmlDatas);
   }
-
   /**
    * 判断生成指纹的是否在配置文件中
    *
