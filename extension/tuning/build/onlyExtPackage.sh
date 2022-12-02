@@ -42,7 +42,7 @@ build_sys_java()
 generate_vsix()
 {
     cd ${root_dir}
-    npm install --legacy-peer-deps --unsafe-perm
+    # npm install --legacy-peer-deps --unsafe-perm
     echo y | ${vsce_dir} package -o $tool_name
     mv *.vsix ${out_dir}
 }
