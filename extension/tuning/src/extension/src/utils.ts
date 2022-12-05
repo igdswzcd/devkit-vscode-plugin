@@ -9,7 +9,6 @@ import { getHtml } from './template';
 import { ProxyManager } from './proxy-manager';
 import Download from './download';
 import { getPwd, saveData } from '.';
-import { resolve } from 'path';
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
@@ -320,10 +319,11 @@ export class Utils {
   }
 
   /**
-   * 跳转打开登录页面
-   * @param global 上下文
-   * @param defaultPort 代理服务的端口
-   * @param proxy 代理后的对象
+   * CloudLab code-server 环境中自动登录
+   * @param params 配置中的用户名参数
+   * @param url 请求地址
+   * @param pwd 解密得到的密码
+   * @returns 请求回调
    */
   static async codeServerAutoLogin(params: any, url: string, pwd: any) {
     const headers = {
@@ -343,6 +343,26 @@ export class Utils {
     };
     return this.axiosInstance.request(req);
   }
+
+  /**
+   * CloudLab code-server 页签销毁时自动登出
+   * @param url 请求地址
+   * @param id 用户 id
+   * @param token
+   */
+  static async codeServerAutoLogout(url: string, id: any, token: any) {
+    const headers = {
+      'content-type': 'application/json',
+      'Accept-Language': I18nService.getLang().language,
+      connection: 'keep-alive',
+      Authorization: token,
+      withCredentials: true,
+    };
+    const req = { headers, url: `${url}${id}/`, method: 'DELETE' };
+    console.log(req);
+    return this.axiosInstance.request(req);
+  }
+
   /**
    * 跳转打开登录页面
    * @param global 上下文
@@ -360,6 +380,7 @@ export class Utils {
       }
     );
     panel.webview.onDidReceiveMessage((message) => {
+      console.log(message);
       const msg = {
         data: {
           url: `http://127.0.0.1:${defaultPort}/user-management/api/v2.2/certificates/download-ca/`,
@@ -373,14 +394,29 @@ export class Utils {
       }
     });
     ToolPanelManager.loginPanels = [{ panel, proxy }];
-    // 相应panel的关闭事件
-    panel.onDidDispose(() => {
-      ToolPanelManager.closeLoginPanel();
-    }, null);
     // 装载页面
     new Promise<HtmlDatas>(() => {
       this.generateIframeMsgData(global, defaultPort, (datas) => {
         console.log(datas);
+        if (datas?.token && datas?.id) {
+          const userSessionUrl = `http://127.0.0.1:${defaultPort}/user-management/api/v2.2/users/session/`;
+          // 相应panel的关闭事件
+          panel.onDidDispose(() => {
+            this.codeServerAutoLogout(userSessionUrl, datas.id, datas.token)
+              .then((res) => {
+                console.log(res.data);
+                ToolPanelManager.closeLoginPanel();
+              })
+              .catch((err) => {
+                console.log(err);
+                ToolPanelManager.closeLoginPanel();
+              });
+          }, null);
+        } else {
+          panel.onDidDispose(() => {
+            ToolPanelManager.closeLoginPanel();
+          });
+        }
         panel.webview.html = getHtml(datas);
       });
     });

@@ -5,7 +5,7 @@
   "pkg_url_inner_bak": "https://cmc-szver-artifactory.cmc.tools.huawei.com/artifactory/cmc-software-release/Hyper%20Tuner/Hyper%20Tuner%202/Hyper%20Tuner%202.5.T20.B010/Hyper-Tuner_2.5.T20_linux.tar.gz",
   "pkg_url": "https://kunpeng-repo.obs.cn-north-4.myhuaweicloud.com/Hyper%20Tuner/Hyper%20Tuner%202.5.RC1.1/Hyper-tuner_2.5.RC1.1_linux.tar.gz",
   "key": "https://download.huawei.com/edownload/e/download.do?actionFlag=download%26mid=SUPE_SERTOOL_VERSION%26nid=TV1100000147%26partNo=2005",
-  "tuningConfig": [],
+  "tuningConfig": [{ "ip": "10.208.211.194", "port": "8086" }],
   "codeServerConfig": [
     {
       "remoteName": "developer.hikunpeng.com",
@@ -13,6 +13,6 @@
     },
     { "username": "tunadmin", "password": "" }
   ],
-  "tuningVersion": ["2.5.0"],
-  "configVersion": ["2.5.0"]
+  "tuningVersion": ["2.5.RC1.1"],
+  "configVersion": ["2.5.RC1.1"]
 }
