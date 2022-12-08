@@ -2,7 +2,7 @@
   "name": "kunpeng-hyper-tuner-plugin",
   "displayName": "Kunpeng Hyper Tuner Plugin",
   "description": "Kunpeng Hyper Tuner Plugin",
-  "version": "2.5.3",
+  "version": "2.5.0",
   "publisher": "kunpengfamily",
   "engines": {
     "vscode": "^1.53.0"

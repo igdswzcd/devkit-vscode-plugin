@@ -32,6 +32,10 @@
             <th style="height:32px; border: 1px solid gray; border-top: none; border-left: none;padding: 8px;">后台版本</th>
         </tr>
         <tr>
+            <td style="height:32px; border: 1px solid gray; border-top: none; border-left: none;padding: 8px;">2.5.0</td>
+            <td style="height:32px; border: 1px solid gray; border-top: none; border-left: none;padding: 8px;">2.5.0</td>
+        </tr>
+        <tr>
             <td style="height:32px; border: 1px solid gray; border-top: none; border-left: none;padding: 8px;">2.3.5</td>
             <td style="height:32px; border: 1px solid gray; border-top: none; border-left: none;padding: 8px;">2.5.RC1.1</td>
         </tr>
@@ -244,6 +248,10 @@ This plug-in needs to run with the background service, which must be installed o
         <tr>
             <th style="height:32px; border: 1px solid gray; border-top: none; border-left: none;padding: 8px;">Plug-in Version</th>
             <th style="height:32px; border: 1px solid gray; border-top: none; border-left: none;padding: 8px;">Background Version</th>
+        </tr>
+        <tr>
+            <td style="height:32px; border: 1px solid gray; border-top: none; border-left: none;padding: 8px;">2.5.0</td>
+            <td style="height:32px; border: 1px solid gray; border-top: none; border-left: none;padding: 8px;">2.5.0</td>
         </tr>
         <tr>
             <td style="height:32px; border: 1px solid gray; border-top: none; border-left: none;padding: 8px;">2.3.5</td>
