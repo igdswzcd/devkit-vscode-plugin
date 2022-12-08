@@ -2,7 +2,7 @@
   "name": "kunpeng-hyper-tuner-plugin",
   "displayName": "Kunpeng Hyper Tuner Plugin",
   "description": "Kunpeng Hyper Tuner Plugin",
-  "version": "2.5.3",
+  "version": "2.5.2",
   "publisher": "kunpengfamily",
   "engines": {
     "vscode": "^1.53.0"
@@ -110,18 +110,8 @@
     "viewsWelcome": [
       {
         "view": "perfadvisorTools",
-        "contents": "%perfadvisor.configer.server%",
-        "when": "!isPerfadvisorConfigured && !ipconfig"
-      },
-      {
-        "view": "perfadvisorTools",
-        "contents": "%perfadvisor.no.login%",
-        "when": "!isPerfadvisorLogined && isPerfadvisorConfigured"
-      },
-      {
-        "view": "perfadvisorTools",
-        "contents": "%perfadvisor.again.configer.server%",
-        "when": "ipconfig"
+        "contents": "%perfadvisor.enter.tool%",
+        "when": "!webviewOpening"
       },
       {
         "view": "perfadvisorTools",

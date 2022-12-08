@@ -145,15 +145,11 @@ function isTrueP(userPath: string) {
     'Working_key',
   ]);
   // 判断 键值 是否正确
-  console.log('json', json);
   if (JSON.stringify(Object.keys(json).sort()) !== jsonResult) {
-    console.log(JSON.stringify(Object.keys(json)));
-    console.log('key not true');
     return 'err';
   }
   // 判断部分 键值所对应的值长度 是否正确
   if (json.Salt_key.length !== 32 || json.ASE_iv.length !== 16) {
-    console.log('length not true');
     return 'err';
   }
   return true;
@@ -186,15 +182,6 @@ function handleErrScene(userPath: string, ipAndUsernameHash: string) {
       twoDataTrue === 'err' ||
       resultP === 'err'
     ) {
-      console.log(
-        'ET: ',
-        resultE,
-        resultF,
-        resultS,
-        oneDataTrue,
-        twoDataTrue,
-        resultP
-      );
       delFolder(userPath);
       return false;
     }

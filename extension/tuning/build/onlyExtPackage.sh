@@ -9,7 +9,7 @@ out_dir=${root_dir}/out
 webview_dir=${root_dir}/../../workspace
 vsce_dir=${root_dir}/node_modules/.bin/vsce
 # 构建结束后名字
-tool_name='Kunpeng-DevKit-IDE-hyper-tuner-plugin_2.5.3.vsix'
+tool_name='Kunpeng-DevKit-IDE-hyper-tuner-plugin_2.5.2.vsix'
 
 clean()
 {

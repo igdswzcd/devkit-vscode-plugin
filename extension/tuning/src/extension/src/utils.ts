@@ -58,9 +58,6 @@ export class Utils {
     if (os.type() === 'Windows_NT') {
       context.globalState.update('autoSystemFlag', true);
     }
-    if (vscode.env.remoteName === 'developer.hikunpeng.com') {
-      saveData('tunadmin', 'admin100', '10.208.211.194');
-    }
   }
   /**
    * 获取配置信息
@@ -359,7 +356,6 @@ export class Utils {
       withCredentials: true,
     };
     const req = { headers, url: `${url}${id}/`, method: 'DELETE' };
-    console.log(req);
     return this.axiosInstance.request(req);
   }
 
@@ -380,7 +376,6 @@ export class Utils {
       }
     );
     panel.webview.onDidReceiveMessage((message) => {
-      console.log(message);
       const msg = {
         data: {
           url: `http://127.0.0.1:${defaultPort}/user-management/api/v2.2/certificates/download-ca/`,
@@ -397,24 +392,31 @@ export class Utils {
     // 装载页面
     new Promise<HtmlDatas>(() => {
       this.generateIframeMsgData(global, defaultPort, (datas) => {
-        console.log(datas);
         if (datas?.token && datas?.id) {
           const userSessionUrl = `http://127.0.0.1:${defaultPort}/user-management/api/v2.2/users/session/`;
           // 相应panel的关闭事件
           panel.onDidDispose(() => {
             this.codeServerAutoLogout(userSessionUrl, datas.id, datas.token)
               .then((res) => {
-                console.log(res.data);
                 ToolPanelManager.closeLoginPanel();
               })
               .catch((err) => {
-                console.log(err);
                 ToolPanelManager.closeLoginPanel();
               });
+            vscode.commands.executeCommand(
+              'setContext',
+              'webviewOpening',
+              false
+            );
           }, null);
         } else {
           panel.onDidDispose(() => {
             ToolPanelManager.closeLoginPanel();
+            vscode.commands.executeCommand(
+              'setContext',
+              'webviewOpening',
+              false
+            );
           });
         }
         panel.webview.html = getHtml(datas);
@@ -448,8 +450,7 @@ export class Utils {
       const codeServerCfg = this.getConfigJson(global.context).codeServerConfig;
       if (vscode.env.remoteName === codeServerCfg[0].remoteName) {
         new Promise<string>(() => {
-          getPwd('tunadmin', '10.208.211.194', (pwd) => {
-            console.log('pwd', pwd);
+          getPwd(codeServerCfg[1].username, htmlDatas.serverAddr, (pwd) => {
             const requestParams: any = codeServerCfg[1];
             const userSessionUrl = `http://127.0.0.1:${defaultPort}/user-management/api/v2.2/users/session/`;
             htmlDatas.ideAddress = `https://${codeServerCfg[0].remoteName}${codeServerCfg[0].loginPath}`;
@@ -463,11 +464,9 @@ export class Utils {
                   id: response.data.data.id,
                   role: response.data.data.role,
                 };
-                console.log('token', htmlDatas.token);
                 callback(htmlDatas);
               })
               .catch((err) => {
-                console.log(err);
                 callback(htmlDatas);
               });
           });

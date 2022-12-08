@@ -1,15 +1,15 @@
 {
-    "perfadvisor.configer.server": "You are not connected to the remote server.\n[Configure Server](command:extension.view.perfadvisorserverconfig)",
-    "perfadvisor.again.configer.server": "You are connected to the remote server\n[reconfigure the server](command:extension.view.perfadvisorserverconfig)",
-    "perfadvisor.free.trial": "You can also apply for a Kunpeng remote lab for trial. A remote lab is pre-installed with the Kunpeng Porting Advisor, Kunpeng Compiler, Kunpeng Hyper Tuner, and Dynamic Binary Translator (ExaGear).\n[Free Trial](command:extension.view.perfadvfreetrialremoteenvironment)",
-    "perfadvisor.no.login": "You are not logged in.\n[Log In](command:extension.view.perfadvisorlogin)",
-    "kunpeng.tuning.suite": "Kunpeng Hyper Tuner Plugin",
-    "free.trial.remote.environment": "Applying for a Remote Lab Trial",
-    "plugins_perfadvisor_title_upgrade": "Upgrade Hyper Tuner",
-    "plugins_perfadvisor_title_uninstall": "Uninstall Hyper Tuner",
-    "perfadvisor.sys.advicefeedback": "Advice Feedback",
-
-    "configure.remote.server": "Configure Remote Server",
-    "plugins_perfadvisor_title_login": "Login Hyper Tuner",
-    "kunpeng.tuning.activitybar": "Kunpeng Hyper Tuner Plugin"
+  "perfadvisor.configer.server": "You are not connected to the remote server.\n[Configure Server](command:extension.view.perfadvisorserverconfig)",
+  "perfadvisor.again.configer.server": "You are connected to the remote server\n[reconfigure the server](command:extension.view.perfadvisorserverconfig)",
+  "perfadvisor.free.trial": "You can also apply for a Kunpeng remote lab for trial. A remote lab is pre-installed with the Kunpeng Porting Advisor, Kunpeng Compiler, Kunpeng Hyper Tuner, and Dynamic Binary Translator (ExaGear).\n[Free Trial](command:extension.view.perfadvfreetrialremoteenvironment)",
+  "perfadvisor.no.login": "You are not logged in.\n[Log In](command:extension.view.perfadvisorlogin)",
+  "kunpeng.tuning.suite": "Kunpeng Hyper Tuner Plugin",
+  "free.trial.remote.environment": "Applying for a Remote Lab Trial",
+  "plugins_perfadvisor_title_upgrade": "Upgrade Hyper Tuner",
+  "plugins_perfadvisor_title_uninstall": "Uninstall Hyper Tuner",
+  "perfadvisor.sys.advicefeedback": "Advice Feedback",
+  "perfadvisor.enter.tool": "Use Kunpeng Hyper Tuner Tools\n[Open Tools](command:extension.view.perfadvisorlogin)",
+  "configure.remote.server": "Configure Remote Server",
+  "plugins_perfadvisor_title_login": "Login Hyper Tuner",
+  "kunpeng.tuning.activitybar": "Kunpeng Hyper Tuner Plugin"
 }

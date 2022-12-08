@@ -1,19 +1,17 @@
 {
-    "perfadvisor.configer.server": "您还未连接远端服务器\n[配置服务器](command:extension.view.perfadvisorserverconfig)",
-    "perfadvisor.again.configer.server": "您已连接远端服务器\n[重新配置服务器](command:extension.view.perfadvisorserverconfig)",
+  "perfadvisor.configer.server": "您还未连接远端服务器\n[配置服务器](command:extension.view.perfadvisorserverconfig)",
+  "perfadvisor.again.configer.server": "您已连接远端服务器\n[重新配置服务器](command:extension.view.perfadvisorserverconfig)",
 
-    "perfadvisor.free.trial": "您也可申请免费试用鲲鹏远程实验室，该环境已预装鲲鹏代码迁移工具、鲲鹏编译器、鲲鹏性能分析工具、动态二进制翻译工具（ExaGear）。\n[免费试用](command:extension.view.perfadvfreetrialremoteenvironment)",
-    "perfadvisor.no.login": "您还未登录\n[登录](command:extension.view.perfadvisorlogin)",
-    "kunpeng.tuning.suite": "鲲鹏性能分析插件",
-    "free.trial.remote.environment": "申请试用远程实验室",
-    "plugins_perfadvisor_title_upgrade": "升级性能分析工具",
-    "plugins_perfadvisor_title_uninstall": "卸载性能分析工具",
-    "perfadvisor.sys.advicefeedback": "建议反馈",
-    
+  "perfadvisor.free.trial": "您也可申请免费试用鲲鹏远程实验室，该环境已预装鲲鹏代码迁移工具、鲲鹏编译器、鲲鹏性能分析工具、动态二进制翻译工具（ExaGear）。\n[免费试用](command:extension.view.perfadvfreetrialremoteenvironment)",
+  "perfadvisor.no.login": "您还未登录\n[登录](command:extension.view.perfadvisorlogin)",
+  "kunpeng.tuning.suite": "鲲鹏性能分析插件",
+  "free.trial.remote.environment": "申请试用远程实验室",
+  "plugins_perfadvisor_title_upgrade": "升级性能分析工具",
+  "plugins_perfadvisor_title_uninstall": "卸载性能分析工具",
+  "perfadvisor.sys.advicefeedback": "建议反馈",
+  "perfadvisor.enter.tool": "使用鲲鹏性能分析工具\n[打开工具](command:extension.view.perfadvisorlogin)",
 
-
-    "configure.remote.server": "配置远端服务器",
-    "plugins_perfadvisor_title_login": "登录性能分析工具",
-    "kunpeng.tuning.activitybar": "鲲鹏性能分析插件"
-    
+  "configure.remote.server": "配置远端服务器",
+  "plugins_perfadvisor_title_login": "登录性能分析工具",
+  "kunpeng.tuning.activitybar": "鲲鹏性能分析插件"
 }

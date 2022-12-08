@@ -107,7 +107,6 @@ export const getHtml = (data: HtmlDatas) => {
                 let time
                 let myFrame = document.getElementById('myFrame');
                 document.cookie = 'tunadmin_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'
-                console.log(document.cookie);
                 let vscode = acquireVsCodeApi()
                 window.addEventListener('message', (e) => {
                     vscode.postMessage(e.data)

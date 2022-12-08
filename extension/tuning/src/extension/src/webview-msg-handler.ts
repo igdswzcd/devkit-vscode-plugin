@@ -108,7 +108,24 @@ export const messageHandler = {
       Utils.invokeCallback(global.toolPanel.getPanel(), message, data);
     }
   },
-
+  async openLoginByButton(global: any) {
+    const resourcePath = Utils.getExtensionFileAbsolutePath(
+      global.context,
+      'out/assets/config.json'
+    );
+    const configData = fs.readFileSync(resourcePath);
+    const tuningConfig = JSON.parse(configData).tuningConfig;
+    const tuningConfigObj = Array.isArray(tuningConfig)
+      ? tuningConfig[0]
+      : tuningConfig;
+    const { proxyServerPort, proxy } = await ProxyManager.createProxyServer(
+      global.context,
+      tuningConfigObj.ip,
+      tuningConfigObj.port
+    );
+    Utils.navToIFrame(global, proxyServerPort, proxy);
+    ToolPanelManager.closePanelsByRemained('tuning', []);
+  },
   /**
    * 打开新的vscode窗口
    *
