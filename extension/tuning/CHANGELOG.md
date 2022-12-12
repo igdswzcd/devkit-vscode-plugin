@@ -111,26 +111,26 @@
 
 ## 2.5.0（2022-12-30）
 
-- Adds MPI cluster Top N rank charts
-- Adds CLI data collection & graphical analysis combined mode
-- Adds System Diagnosis - memory leak diagnosis
-- Adds 2G optimization and cleaning function in workspace
-- Adds Java Performance - CMS GC analysis
-- Expands Java Performance - hotspot analysis with support for Java lock, Cache Miss, and memory allocation dimensions
-- Supports Java Performance - export hotspot analysis report
-- Supports node-to-node MPI communication hotspot analysis
-- Supports hundreds of P level rank-to-rank communication heat map
-- Supports MPI cluster checker for initial checking
-- Supports HPC Analysis - basic capability of RDMA/shared storage joint analysis under MPI cluster
-- Adjusts HPC Analysis - UI of result query and display
-- Optimizes charts of MPI inefficient message communication mode
-- Optimizes display of OpenMP timeline
+- Added the top N rank chart of the MPI cluster.
+- Added the command line data collection and graphical analysis combination mode.
+- Added memory leak diagnosis in system diagnosis.
+- Added workspace cleanup function.
+- Added CMS GC analysis in Java Profiler.
+- Added hotspot analysis of Java lock, cache miss, and memory allocation samples in Java Profiler.
+- Added export of hotspot analysis reports in Java Profiler.
+- Added node-to-node MPI communication heat analysis.
+- Added PB-scale rank-to-rank communication heatmaps.
+- Added initial checks by MPI cluster checker.
+- Added RDMA/shared storage joint analysis in MPI clusters for HPC scenario analysis.
+- Modified the result query and display UI in HPC scenario analysis.
+- Optimized MPI inefficient communication pattern chart.
+- Optimized the OpenMP timeline display.
 
 ## 2.3.5（2022-06-30）
 
 - Fixed the issue that the memory diagnosis function is incompatible with openEuler22.03.
 - Fixed the issue that the CPU usage of the HPC scenario analysis function is inconsistent with the actual CPU usage in some scenarios.
-- Fixed the MPI timeline frame freezing problem
+- Fixed the MPI timeline frame freezing problem.
 
 ## 2.3.3 (2021-12-30)
 
