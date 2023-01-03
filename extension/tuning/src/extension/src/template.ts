@@ -100,7 +100,7 @@ export const getHtml = (data: HtmlDatas) => {
                     </div>
                     <div class="text">${pageLoadingText}</div>
                 </div>
-                <iframe id="myFrame" style="width:100vw;height:100vh;" onload="loadFinish()" frameborder="no" border="0"
+                <iframe id="myFrame" style="width:100%;height:calc(100vh - 5px);min-height:768px;opacity:1;" onload="loadFinish()" frameborder="no" border="0"
                 src="${ideAddress}">
                 </iframe>
                 <script>
